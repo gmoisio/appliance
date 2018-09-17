@@ -1,0 +1,15 @@
+---
+# file: roles/ntp/tasks/main.yml
+
+- name: Install ntp server
+  apt:
+    name: ntp
+    state: latest
+
+- name: Modify ntp server address pool
+  replace:
+    path: /etc/ntp.conf
+    regexp: 'ubuntu\.pool'
+    replace: 'fr.pool'
+  notify:
+    - Restart ntp service

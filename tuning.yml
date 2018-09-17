@@ -7,4 +7,5 @@
     #- wifi
     #- iperf3
     #- python
-    - trex
+    #- trex
+    - ntp
