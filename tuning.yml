@@ -1,0 +1,10 @@
+---
+# file: tuning.yml
+- hosts: appliances
+  become: true
+  roles:
+    #- common
+    #- wifi
+    #- iperf3
+    #- python
+    - trex

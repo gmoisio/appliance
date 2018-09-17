@@ -1,0 +1,7 @@
+---
+# file: roles/wifi/tasks/main.yml
+
+- name: Install wpasupplicant
+  apt:
+    name: wpasupplicant
+    state: latest

@@ -1,0 +1,10 @@
+---
+# file: roles/iperf3/tasks/main.yml
+
+- name: Download and install libiperf0 v{{ iperf3.version }}
+  apt:
+    deb: "https://iperf.fr/download/ubuntu/libiperf0_{{ iperf3.version }}_amd64.deb"
+
+- name: Download and install iperf3 v{{ iperf3.version }}
+  apt:
+    deb: "https://iperf.fr/download/ubuntu/iperf3_{{ iperf3.version }}_amd64.deb"

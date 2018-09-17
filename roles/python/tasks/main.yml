@@ -1,0 +1,19 @@
+---
+# file: roles/python/tasks/main.yml
+
+- name: Install pip3
+  apt:
+    name: python3-pip
+    state: latest
+
+- name: Install netmiko with pip3
+  pip:
+    executable: /usr/bin/pip3
+    name: netmiko
+    state: latest
+
+- name: Install napalm with pip3
+  pip:
+    executable: /usr/bin/pip3
+    name: napalm
+    state: latest

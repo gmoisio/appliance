@@ -1,0 +1,22 @@
+---
+# file: roles/trex/tasks/main.yml
+
+- name: Python 2.7, 3.4 or 3.5 mandatory
+  apt:
+    name: python
+    state: latest
+
+- name: Create trex directory
+  file:
+    path: "/home/{{ ansible_user }}/trex"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Download and unarchive latest trex release
+  unarchive:
+    src: http://trex-tgn.cisco.com/trex/release/latest
+    dest: "/home/{{ ansible_user }}/trex"
+    remote_src: yes
+

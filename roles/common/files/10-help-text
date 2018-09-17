@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+#    10-help-text - print the help text associated with the distro
+#    Copyright (C) 2009-2010 Canonical Ltd.
+#
+#    Authors: Dustin Kirkland <kirkland@canonical.com>,
+#             Brian Murray <brian@canonical.com>
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License along
+#    with this program; if not, write to the Free Software Foundation, Inc.,
+#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+printf "\n"
+printf "  _____         _   _                              \n"
+printf " |_   _|__  ___| |_(_)_ __   __ _                  \n"
+printf "   | |/ _ \/ __| __| | '_ \ / _' |                 \n"
+printf "   | |  __/\__ \ |_| | | | | (_| |                 \n"
+printf "   |_|\___||___/\__|_|_| |_|\__, |                 \n"
+printf "   ___                      |___/                  \n"
+printf "  ( _ )                                            \n"
+printf "  / _ \/\                                          \n"
+printf " | (_>  <                                          \n"
+printf "  \___/\/                                          \n"
+printf "  __  __             _ _             _             \n"
+printf " |  \/  | ___  _ __ (_) |_ ___  _ __(_)_ __   __ _ \n"
+printf " | |\/| |/ _ \| '_ \| | __/ _ \| '__| | '_ \ / _' |\n"
+printf " | |  | | (_) | | | | | || (_) | |  | | | | | (_| |\n"
+printf " |_|  |_|\___/|_| |_|_|\__\___/|_|  |_|_| |_|\__, |\n"
+printf "                                             |___/ \n"
+printf "\n"

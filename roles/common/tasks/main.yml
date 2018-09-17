@@ -1,0 +1,22 @@
+---
+# file: roles/common/tasks/main.yml
+
+- name: Copy 10-help-text help file
+  copy:
+    src: files/10-help-text
+    dest: /etc/update-motd.d/10-help-text
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Uncomment "force_color_prompt=yes"
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bashrc"
+    insertafter: ^#force_color_prompt=yes
+    line: force_color_prompt=yes
+    state: present
+
+- name: Upgrade packages
+  apt: 
+    upgrade: dist
+    update_cache: yes
