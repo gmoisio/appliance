@@ -8,15 +8,15 @@
 
 - name: Create trex directory
   file:
-    path: "/home/{{ ansible_user }}/trex"
+    path: '/home/{{ ansible_user }}/trex'
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
     mode: 0775
 
 - name: Download and unarchive latest trex release
   unarchive:
     src: http://trex-tgn.cisco.com/trex/release/latest
-    dest: "/home/{{ ansible_user }}/trex"
+    dest: '/home/{{ ansible_user }}/trex'
     remote_src: yes
 

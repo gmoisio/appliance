@@ -1,0 +1,35 @@
+---
+# file: roles/tftp/tasks/main.yml
+
+- name: Install vsftpd
+  apt:
+    name: tftpd-hpa
+    state: latest
+
+- name: Create directory /home/ztp/tftp
+  file:
+    path: /home/ztp/tftp
+    state: directory
+    owner: nobody
+    group: nogroup
+    mode: 'a-w'
+
+- name: Create upload directory /home/ztp/tftp/files
+  file:
+    path: /home/ztp/tftp/files
+    state: directory
+    owner: tftp
+    group: tftp
+
+- name: Modify file /etc/default/tftpd-hpa
+  replace:
+    path: /etc/default/tftpd-hpa
+    regexp: '^{{ item.regexp }}'
+    replace: '{{ item.replace }}'
+  with_items:
+    - regexp: 'TFTP_DIRECTORY="/var/lib/tftpboot"'
+      replace: 'TFTP_DIRECTORY="/home/ztp/tftp/files"'
+    - regexp: 'TFTP_OPTIONS="--secure"'
+      replace: 'TFTP_OPTIONS="--secure --create"'
+  notify:
+    - Restart tftp service

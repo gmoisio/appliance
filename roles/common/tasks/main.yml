@@ -11,9 +11,9 @@
 
 - name: Uncomment "force_color_prompt=yes"
   lineinfile:
-    path: "/home/{{ ansible_user }}/.bashrc"
-    insertafter: ^#force_color_prompt=yes
-    line: force_color_prompt=yes
+    path: '/home/{{ ansible_user }}/.bashrc'
+    insertafter: '^#force_color_prompt=yes'
+    line: 'force_color_prompt=yes'
     state: present
 
 - name: Upgrade packages

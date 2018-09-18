@@ -1,0 +1,7 @@
+---
+# file: roles/tftp/handlers/main.yml
+
+- name: Restart tftp service
+  service:
+    name: tftpd-hpa
+    state: restarted

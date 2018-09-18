@@ -1,0 +1,24 @@
+---
+# file: roles/dhcp/tasks/main.yml
+
+- name: Install dhcp
+  apt:
+    name: isc-dhcp-server
+    state: latest
+
+- name: Stop and disable dhcp service
+  systemd:
+    name: isc-dhcp-server
+    enabled: no
+    state: stopped
+
+- name: Modify file /etc/default/isc-dhcp-server
+  replace:
+    path: /etc/default/isc-dhcp-server
+    regexp: '^INTERFACESv4=""'
+    replace: 'INTERFACESv4="enp2s0"'
+
+- name: Backup /etc/dhcp/dhcpd.conf
+  copy:
+    src: /etc/dhcp/dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf.bck
