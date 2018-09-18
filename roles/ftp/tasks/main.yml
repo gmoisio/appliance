@@ -1,0 +1,62 @@
+---
+# file: roles/ftp/tasks/main.yml
+
+- name: Install vsftpd
+  apt:
+    name: vsftpd
+    state: latest
+
+- name: Create user ztp
+  user:
+    name: ztp
+    # mkpasswd --method=sha-512
+    password: $6$hWxmpaoonv3ClHNK$ljGVm3GV4w.kA.ilbqa3.2PjERxbn.flN9pzcTpmZHyoXa.ON5bvFRgD/V9eI2GsW1if8R7bmMU6h9dAzgYCB0
+
+- name: Create directory /home/ztp/ftp
+  file:
+    path: /home/ztp/ftp
+    state: directory
+    owner: nobody
+    group: nogroup
+    mode: "a-w"
+
+- name: Create upload directory /home/ztp/ftp/files
+  file:
+    path: /home/ztp/ftp
+    state: directory
+    owner: ztp
+    group: ztp
+
+- name: Create file /etc/vsftpd.userlist
+  lineinfile:
+    path: /etc/vsftpd.userlist
+    line: ztp
+    create: yes
+    state: present
+
+- name: Modify /etc/vsftpd.conf file
+  lineinfile:
+    path: /etc/vsftpd.conf
+    insertafter: "^{{ item.after }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - after: ^#write_enable=YES
+      line: write_enable=YES
+    - after: ^#chroot_local_user=YES
+      line: chroot_local_user=YES
+
+- name: Add lines to /etc/vsftpd.conf file
+  lineinfile:
+    path: /etc/vsftpd.conf
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - line: "# Cutomized for appliance"
+    - line: user_sub_token=$USER
+    - line: local_root=/home/$USER/ftp
+    - line: userlist_enable=YES
+    - line: userlist_file=/etc/vsftpd.userlist
+    - line: userlist_deny=NO
+  notify:
+    - Restart vsftpd service

@@ -1,6 +1,7 @@
 ---
 # file: tuning.yml
 - hosts: appliances
+  gather_facts: no
   become: true
   roles:
     #- common
@@ -8,4 +9,23 @@
     #- iperf3
     #- python
     #- trex
-    - ntp
+    #- ntp
+    #- git
+    - ftp
+
+  #post_tasks:
+
+   # - name: Restart machine
+   #  shell: sleep 2 && shutdown -r now "Ansible reboot triggered"
+   #   async: 1
+   #   poll: 0
+   #   ignore_errors: true
+
+    #- name: Waiting for server to come back
+    #  become: false
+    #  local_action:
+    #    module: wait_for
+    #    port: 22
+    #    host: "{{ inventory_hostname }}"
+    #    search_regex: OpenSSH
+    #    delay: 10
