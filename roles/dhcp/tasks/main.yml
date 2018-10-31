@@ -22,3 +22,4 @@
   copy:
     src: /etc/dhcp/dhcpd.conf
     dest: /etc/dhcp/dhcpd.conf.bck
+    remote_src: yes

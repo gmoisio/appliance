@@ -1,7 +1,7 @@
 ---
 # file: roles/tftp/tasks/main.yml
 
-- name: Install vsftpd
+- name: Install tftpd-hpa
   apt:
     name: tftpd-hpa
     state: latest
